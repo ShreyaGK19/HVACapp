@@ -1,5 +1,5 @@
 
-import { Line, Bar } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 import { Card } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 
@@ -25,12 +25,19 @@ const Stats = () => {
         <section className="glass-panel p-6 animate-fade-in" style={{animationDelay: "0.1s"}}>
           <h2 className="text-lg font-medium mb-4">Weekly Temperature</h2>
           <div className="h-[200px] w-full">
-            <Line
-              data={data}
-              margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-            >
-              {/* Add Line chart components here when implementing charts */}
-            </Line>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={data}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                <XAxis dataKey="name" stroke="#666" />
+                <YAxis stroke="#666" />
+                <Line 
+                  type="monotone" 
+                  dataKey="value" 
+                  stroke="#9b87f5" 
+                  strokeWidth={2} 
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </section>
 
