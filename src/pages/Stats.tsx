@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import { Card } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
@@ -19,11 +18,9 @@ const comfortData = [
   { name: "Slightly Warm", value: 15, color: "#f87171" },
 ];
 
-const moodData = [
-  { name: "Calm", value: 40, color: "#F2FCE2" },
-  { name: "Happy", value: 25, color: "#FEF7CD" },
-  { name: "Energetic", value: 15, color: "#FEC6A1" },
-  { name: "Peaceful", value: 20, color: "#E5DEFF" },
+const happinessData = [
+  { value: 92, color: "#4ade80" },
+  { value: 8, color: "#1f2937" }, // Background color to complete the semi-circle
 ];
 
 const Stats = () => {
@@ -108,32 +105,30 @@ const Stats = () => {
         </section>
 
         <section className="glass-panel p-6 animate-fade-in" style={{animationDelay: "0.4s"}}>
-          <h2 className="text-lg font-medium mb-4">Mood Distribution</h2>
-          <div className="h-[300px]">
+          <h2 className="text-lg font-medium mb-4">Happiness Level</h2>
+          <div className="h-[200px] relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
-                  data={moodData}
+                  data={happinessData}
                   cx="50%"
-                  cy="50%"
+                  cy="100%"
+                  startAngle={180}
+                  endAngle={0}
                   innerRadius={60}
                   outerRadius={80}
-                  paddingAngle={5}
+                  paddingAngle={0}
                   dataKey="value"
                 >
-                  {moodData.map((entry, index) => (
+                  {happinessData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
-            <div className="flex flex-wrap justify-center gap-4 mt-4">
-              {moodData.map((entry, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.color }} />
-                  <span className="text-sm">{entry.name}</span>
-                </div>
-              ))}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+              <span className="text-4xl font-bold text-green-500">92%</span>
+              <p className="text-sm text-muted-foreground mt-1">Happy</p>
             </div>
           </div>
         </section>
