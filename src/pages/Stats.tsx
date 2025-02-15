@@ -19,6 +19,13 @@ const comfortData = [
   { name: "Slightly Warm", value: 15, color: "#f87171" },
 ];
 
+const moodData = [
+  { name: "Calm", value: 40, color: "#F2FCE2" },
+  { name: "Happy", value: 25, color: "#FEF7CD" },
+  { name: "Energetic", value: 15, color: "#FEC6A1" },
+  { name: "Peaceful", value: 20, color: "#E5DEFF" },
+];
+
 const Stats = () => {
   return (
     <div className="min-h-screen bg-background text-foreground p-6 pb-24">
@@ -91,6 +98,37 @@ const Stats = () => {
             </ResponsiveContainer>
             <div className="flex justify-center gap-4 mt-4">
               {comfortData.map((entry, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.color }} />
+                  <span className="text-sm">{entry.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="glass-panel p-6 animate-fade-in" style={{animationDelay: "0.4s"}}>
+          <h2 className="text-lg font-medium mb-4">Mood Distribution</h2>
+          <div className="h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={moodData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {moodData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="flex flex-wrap justify-center gap-4 mt-4">
+              {moodData.map((entry, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.color }} />
                   <span className="text-sm">{entry.name}</span>
