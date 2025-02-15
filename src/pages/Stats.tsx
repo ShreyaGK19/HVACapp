@@ -1,9 +1,9 @@
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import { Card } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 
-const data = [
+const tempData = [
   { name: "Mon", value: 21 },
   { name: "Tue", value: 22 },
   { name: "Wed", value: 20 },
@@ -11,6 +11,12 @@ const data = [
   { name: "Fri", value: 21 },
   { name: "Sat", value: 19 },
   { name: "Sun", value: 20 },
+];
+
+const comfortData = [
+  { name: "Comfortable", value: 65, color: "#4ade80" },
+  { name: "Slightly Cool", value: 20, color: "#60a5fa" },
+  { name: "Slightly Warm", value: 15, color: "#f87171" },
 ];
 
 const Stats = () => {
@@ -26,7 +32,7 @@ const Stats = () => {
           <h2 className="text-lg font-medium mb-4">Weekly Temperature</h2>
           <div className="h-[200px] w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={data}>
+              <LineChart data={tempData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#333" />
                 <XAxis dataKey="name" stroke="#666" />
                 <YAxis stroke="#666" />
@@ -60,6 +66,37 @@ const Stats = () => {
             <p className="text-sm text-muted-foreground mt-2">
               This month's savings
             </p>
+          </div>
+        </section>
+
+        <section className="glass-panel p-6 animate-fade-in" style={{animationDelay: "0.3s"}}>
+          <h2 className="text-lg font-medium mb-4">Comfort Distribution</h2>
+          <div className="h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={comfortData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {comfortData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="flex justify-center gap-4 mt-4">
+              {comfortData.map((entry, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.color }} />
+                  <span className="text-sm">{entry.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </div>
