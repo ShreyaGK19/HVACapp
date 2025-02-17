@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import { Card } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
@@ -13,37 +14,37 @@ const tempData = [
 ];
 
 const comfortData = [
-  { name: "Comfortable", value: 65, color: "#4ade80" },
-  { name: "Slightly Cool", value: 20, color: "#60a5fa" },
-  { name: "Slightly Warm", value: 15, color: "#f87171" },
+  { name: "Comfortable", value: 65, color: "#22c55e" },
+  { name: "Slightly Cool", value: 20, color: "#3b82f6" },
+  { name: "Slightly Warm", value: 15, color: "#ef4444" },
 ];
 
 const happinessData = [
-  { value: 92, color: "#4ade80" },
-  { value: 8, color: "#1f2937" }, // Background color to complete the semi-circle
+  { value: 92, color: "#22c55e" },
+  { value: 8, color: "#f3f4f6" }, // Light gray background for the semi-circle
 ];
 
 const Stats = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 pb-24">
+    <div className="min-h-screen bg-gray-50 text-gray-900 p-6 pb-24">
       <header className="mb-8 animate-fade-in">
-        <h1 className="text-2xl font-semibold">Statistics</h1>
-        <p className="text-muted-foreground">Energy usage and savings</p>
+        <h1 className="text-2xl font-semibold text-gray-900">Statistics</h1>
+        <p className="text-gray-500">Energy usage and savings</p>
       </header>
 
       <div className="grid gap-6">
-        <section className="glass-panel p-6 animate-fade-in" style={{animationDelay: "0.1s"}}>
-          <h2 className="text-lg font-medium mb-4">Weekly Temperature</h2>
+        <section className="bg-white rounded-2xl shadow-sm p-6 animate-fade-in" style={{animationDelay: "0.1s"}}>
+          <h2 className="text-lg font-medium text-gray-900 mb-4">Weekly Temperature</h2>
           <div className="h-[200px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={tempData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                <XAxis dataKey="name" stroke="#666" />
-                <YAxis stroke="#666" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="name" stroke="#6b7280" />
+                <YAxis stroke="#6b7280" />
                 <Line 
                   type="monotone" 
                   dataKey="value" 
-                  stroke="#9b87f5" 
+                  stroke="#8b5cf6" 
                   strokeWidth={2} 
                 />
               </LineChart>
@@ -52,29 +53,29 @@ const Stats = () => {
         </section>
 
         <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in" style={{animationDelay: "0.2s"}}>
-          <div className="glass-panel p-6">
-            <h3 className="text-lg font-medium mb-4">Energy Usage</h3>
-            <div className="text-3xl font-semibold text-highlight">
+          <div className="bg-white rounded-2xl shadow-sm p-6">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">Energy Usage</h3>
+            <div className="text-3xl font-semibold text-purple-600">
               245 kWh
             </div>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="text-sm text-gray-500 mt-2">
               -12% from last month
             </p>
           </div>
 
-          <div className="glass-panel p-6">
-            <h3 className="text-lg font-medium mb-4">Cost Savings</h3>
-            <div className="text-3xl font-semibold text-green-500">
+          <div className="bg-white rounded-2xl shadow-sm p-6">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">Cost Savings</h3>
+            <div className="text-3xl font-semibold text-green-600">
               $34.50
             </div>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="text-sm text-gray-500 mt-2">
               This month's savings
             </p>
           </div>
         </section>
 
-        <section className="glass-panel p-6 animate-fade-in" style={{animationDelay: "0.3s"}}>
-          <h2 className="text-lg font-medium mb-4">Comfort Distribution</h2>
+        <section className="bg-white rounded-2xl shadow-sm p-6 animate-fade-in" style={{animationDelay: "0.3s"}}>
+          <h2 className="text-lg font-medium text-gray-900 mb-4">Comfort Distribution</h2>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -97,15 +98,15 @@ const Stats = () => {
               {comfortData.map((entry, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.color }} />
-                  <span className="text-sm">{entry.name}</span>
+                  <span className="text-sm text-gray-700">{entry.name}</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="glass-panel p-6 animate-fade-in" style={{animationDelay: "0.4s"}}>
-          <h2 className="text-lg font-medium mb-4">Happiness Level</h2>
+        <section className="bg-white rounded-2xl shadow-sm p-6 animate-fade-in" style={{animationDelay: "0.4s"}}>
+          <h2 className="text-lg font-medium text-gray-900 mb-4">Happiness Level</h2>
           <div className="h-[200px] relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -127,8 +128,8 @@ const Stats = () => {
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-              <span className="text-4xl font-bold text-green-500">92%</span>
-              <p className="text-sm text-muted-foreground mt-1">Happy</p>
+              <span className="text-4xl font-bold text-green-600">92%</span>
+              <p className="text-sm text-gray-500 mt-1">Happy</p>
             </div>
           </div>
         </section>
